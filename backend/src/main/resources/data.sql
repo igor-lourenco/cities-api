@@ -317,3 +317,7 @@ INSERT INTO TB_DDD (state_id, ddd) VALUES
 (27, '63'),
 (99,  NULL);
 
+
+
+INSERT INTO CIDADE (id, nome, uf, ibge, lat_lon) VALUES							
+(1,	'Afonso Cláudio',	8,	3200102,	'(-20.0778007507324006,-41.1260986328125)');
