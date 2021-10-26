@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name = "tb_pais")
-public class Country implements Serializable{
+@Table(name = "tb_estado")
+public class State implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,25 +23,26 @@ public class Country implements Serializable{
 	@Column(name = "nome")
 	private String name;
 
-	@Column(name = "nome_pt")
-	private String portugueseName;
+	private String uf;
 
-	@Column(name = "sigla")
-	private String code;
+	private Integer ibge;
 
-	private Integer bacen;
 	
-	
+	private Country country;
 
-	public Country() {
-	}
+	@ElementCollection(fetch=FetchType.LAZY)
+	@CollectionTable(name = "tb_ddd")
+	private List<String> ddd = new ArrayList<>();
 
-	public Country(Long id, String name, String portugueseName, String code, Integer bacen) {
+	public State(Long id, String name, String uf, Integer ibge, Country country) {
 		this.id = id;
 		this.name = name;
-		this.portugueseName = portugueseName;
-		this.code = code;
-		this.bacen = bacen;
+		this.uf = uf;
+		this.ibge = ibge;
+		this.country = country;
+	}
+
+	public State() {
 	}
 
 	public Long getId() {
@@ -52,20 +53,20 @@ public class Country implements Serializable{
 		return name;
 	}
 
-	public String getPortugueseName() {
-		return portugueseName;
+	public String getUf() {
+		return uf;
 	}
 
-	public String getCode() {
-		return code;
+	public Integer getIbge() {
+		return ibge;
 	}
 
-	public Integer getBacen() {
-		return bacen;
+	public List<String> getDdd() {
+		return ddd;
 	}
 
-	public List<State> getStates() {
-		return states;
+	public Country getCountry() {
+		return country;
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class Country implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Country other = (Country) obj;
+		State other = (State) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

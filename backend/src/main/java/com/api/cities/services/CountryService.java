@@ -22,7 +22,7 @@ public class CountryService {
 	@Transactional(readOnly = true)
 	public Page<CountryDTO> findAll(Pageable pageable, String nome) {
 		Page<Country> entity = repository.findByName(nome, pageable);
-		return entity.map(x -> new CountryDTO(x));
+		return entity.map(x -> new CountryDTO(x, x.getStates()));
 	}
 	
 	@Transactional()

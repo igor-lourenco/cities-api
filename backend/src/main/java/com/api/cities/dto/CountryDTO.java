@@ -1,8 +1,12 @@
 package com.api.cities.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import com.api.cities.entities.Country;
+import com.api.cities.entities.State;
 
 public class CountryDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -16,6 +20,8 @@ public class CountryDTO implements Serializable{
 	private String code;
 
 	private Integer bacen;
+	
+	private Set<StateDTO> states = new HashSet<>();
 	
 	public CountryDTO() {
 		
@@ -35,6 +41,11 @@ public class CountryDTO implements Serializable{
 		portugueseName = entity.getPortugueseName();
 		code = entity.getCode();
 		bacen = entity.getBacen();
+	}
+	
+	public CountryDTO(Country entity, List<State> states) {
+		this(entity);
+		states.forEach(estado -> this.states.add(new StateDTO(estado)));
 	}
 
 	public Long getId() {
