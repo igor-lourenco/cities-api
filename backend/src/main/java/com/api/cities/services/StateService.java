@@ -20,8 +20,8 @@ public class StateService {
 	private StateRepository repository;
 	
 	@Transactional(readOnly = true)
-	public Page<StateDTO> findAll(Pageable pageable) {
-		Page<State> entity = repository.findAll(pageable);
+	public Page<StateDTO> findAll(Pageable pageable, String name) {
+		Page<State> entity = repository.findByName(name, pageable);
 		return entity.map(x -> new StateDTO(x, x.getDdd(), x.getCities()));
 	}
 	

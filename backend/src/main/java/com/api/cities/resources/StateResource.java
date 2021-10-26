@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.cities.dto.StateDTO;
@@ -20,9 +21,10 @@ public class StateResource {
 	private StateService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<StateDTO>> findAllPaged(Pageable pageable){
+	public ResponseEntity<Page<StateDTO>> findAllPaged(Pageable pageable,
+			@RequestParam(value = "name",  defaultValue = "") String name){
 		
-		Page<StateDTO> dto = service.findAll(pageable);
+		Page<StateDTO> dto = service.findAll(pageable, name.trim());
 		return ResponseEntity.ok().body(dto);
 	}
 	

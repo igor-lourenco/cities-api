@@ -20,8 +20,8 @@ public class CityService {
 	private CityRepository repository;
 	
 	@Transactional(readOnly = true)
-	public Page<CityDTO> findAll(Pageable pageable) {
-		Page<City> entity = repository.findAll(pageable);
+	public Page<CityDTO> findAll(Pageable pageable, String name) {
+		Page<City> entity = repository.findByName(name, pageable);
 		return entity.map(x -> new CityDTO(x));
 	}
 	
