@@ -22,13 +22,13 @@ public class StateService {
 	@Transactional(readOnly = true)
 	public Page<StateDTO> findAll(Pageable pageable) {
 		Page<State> entity = repository.findAll(pageable);
-		return entity.map(x -> new StateDTO(x, x.getDdd()));
+		return entity.map(x -> new StateDTO(x, x.getDdd(), x.getCities()));
 	}
 	
 	@Transactional()
 	public StateDTO findById(Long id) {
 		Optional<State> entity = repository.findById(id);
 		State obj = entity.orElseThrow(() ->  new ResourceNotFoundException(" Id não existe"));
-		return new StateDTO(obj, obj.getDdd());
+		return new StateDTO(obj, obj.getDdd(), obj.getCities());
 	}
 }

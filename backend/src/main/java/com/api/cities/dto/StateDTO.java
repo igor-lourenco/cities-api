@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.api.cities.entities.City;
 import com.api.cities.entities.Country;
 import com.api.cities.entities.State;
 
@@ -16,6 +17,7 @@ public class StateDTO implements Serializable{
 	private Integer ibge;
 	private Country country;
 
+	private List<City> cities= new ArrayList<>();
 	private List<String> ddd = new ArrayList<>();
 	
 	public StateDTO() {
@@ -38,9 +40,10 @@ public class StateDTO implements Serializable{
 		this.country = entity.getCountry();
 	}
 	
-	public StateDTO(State entity, List<String> ddd) {
+	public StateDTO(State entity, List<String> ddd, List<City> cities) {
 		this(entity);
 		ddd.forEach(ddds -> this.ddd.add(ddds));
+		cities.forEach(city -> this.cities.add(city));
 	}
 
 	public Long getId() {

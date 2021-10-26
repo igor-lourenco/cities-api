@@ -5,11 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "cidade")
+@Table(name = "tb_cidade")
 
 public class City implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,44 +22,98 @@ public class City implements Serializable {
 	@Column(name = "nome")
 	private String name;
 
-	private Integer uf;
-
 	private Integer ibge;
-
 	
 	@Column(name = "lat_lon")
 	private String geolocation;
+	
+	private Long latitude;
+	private Long longitude;
+	private Integer codTom;
+	
+	@ManyToOne
+	@JoinColumn(name = "state_id")
+	private State state;
 
 
 	public City() {
 	}
-
-	public City(final Long id, final String name, final Integer uf, final Integer ibge, final String geolocation) {
+	
+	public City(Long id, String name, Integer ibge, String geolocation, Long latitude, Long longitude, Integer codTom,
+			State state) {
+		super();
 		this.id = id;
 		this.name = name;
-		this.uf = uf;
 		this.ibge = ibge;
 		this.geolocation = geolocation;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.codTom = codTom;
+		this.state = state;
 	}
-
+	
 	public Long getId() {
 		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public Integer getUf() {
-		return uf;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Integer getIbge() {
 		return ibge;
 	}
 
+	public void setIbge(Integer ibge) {
+		this.ibge = ibge;
+	}
+
 	public String getGeolocation() {
 		return geolocation;
+	}
+
+	public void setGeolocation(String geolocation) {
+		this.geolocation = geolocation;
+	}
+
+	public Long getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Long latitude) {
+		this.latitude = latitude;
+	}
+
+	public Long getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Long longitude) {
+		this.longitude = longitude;
+	}
+
+	public Integer getCodTom() {
+		return codTom;
+	}
+
+	public void setCodTom(Integer codTom) {
+		this.codTom = codTom;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 	@Override

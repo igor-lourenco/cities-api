@@ -12,7 +12,10 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_estado")
@@ -28,6 +31,10 @@ public class State implements Serializable{
 	private String uf;
 
 	private Integer ibge;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "state")
+	private List<City> cities= new ArrayList<>();
 
 	@ManyToOne
 	@JoinColumn(name = "pais_id")
@@ -66,6 +73,10 @@ public class State implements Serializable{
 
 	public List<String> getDdd() {
 		return ddd;
+	}
+	
+	public List<City> getCities() {
+		return cities;
 	}
 
 	public Country getCountry() {
