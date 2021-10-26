@@ -1,6 +1,6 @@
 # Descrição
 
-Neste projeto tem API Rest de consulta de cidades do Brasil com seus dados. Navegando pelas boas práticas de Java e do Spring, popular o bando de dados e criar um serviço para o buscar as cidade, estados, países pelo nome.
+Neste projeto tem API Rest de consulta de cidades do Brasil com seus dados. Navegando pelas boas práticas de Java e do Spring, popular o banco de dados e criar um serviço para o buscar as cidade, estados, países pelo nome.
 
 ## Tecnologias
 
