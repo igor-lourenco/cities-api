@@ -19,7 +19,7 @@ public class StateResource {
 	private StateService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<StateDTO>> findByName(Pageable pageable){
+	public ResponseEntity<Page<StateDTO>> findAllPaged(Pageable pageable){
 		
 		Page<StateDTO> dto = service.findAll(pageable);
 		return ResponseEntity.ok().body(dto);

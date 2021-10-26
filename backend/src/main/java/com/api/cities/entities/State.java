@@ -10,6 +10,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +29,8 @@ public class State implements Serializable{
 
 	private Integer ibge;
 
-	
+	@ManyToOne
+	@JoinColumn(name = "pais_id")
 	private Country country;
 
 	@ElementCollection(fetch=FetchType.LAZY)

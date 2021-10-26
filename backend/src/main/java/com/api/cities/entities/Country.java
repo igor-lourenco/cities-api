@@ -31,7 +31,9 @@ public class Country implements Serializable{
 
 	private Integer bacen;
 	
-	
+	@JsonIgnore
+	@OneToMany(mappedBy = "country")
+	private List<State> states = new ArrayList<>();
 
 	public Country() {
 	}
